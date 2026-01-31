@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplillaves DJ S.A.S | Cerrajería Profesional Bogotá</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        :root {
+            --azul: #0A3D62;      
+            --verde: #1E8A62;     
+            --amarillo: #F6C90E;  
+            --gris: #2D2D2D;
+            --blanco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #f8fafa; color: var(--gris); overflow-x: hidden; }
+
+        /* Fondo Parallax Suave */
+        .bg-fixed {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('img/imagen2.jpeg') center/cover no-repeat;
+            filter: blur(10px) brightness(0.35); z-index: -2;
+        }
+
+        /* Header Organizado */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--azul);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 55px; width: auto; }
+        .logo-text h1 { font-size: 1.2rem; color: var(--azul); font-weight: 800; letter-spacing: -0.5px; }
+        .logo-text span { color: var(--verde); }
+
+        /* Hero Section Premium */
+        .hero { padding: 40px 8%; display: flex; align-items: center; min-height: 70vh; }
+        .hero-card {
+            max-width: 1150px; margin: auto; background: var(--blanco);
+            display: grid; grid-template-columns: 1.1fr 0.9fr; border-radius: 40px;
+            overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+        .hero-text { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-text h2 { font-size: 3.2rem; color: var(--azul); line-height: 1.1; margin-bottom: 25px; }
+        .hero-text h2 span { color: var(--verde); }
+        .hero-text p { font-size: 1.1rem; color: #555; margin-bottom: 35px; border-left: 5px solid var(--amarillo); padding-left: 20px; }
+        
+        .hero-img { background: url('img/imagen1.jpeg') center/cover; min-height: 450px; }
+
+        /* Botones de Acción */
+        .btn-main { background: var(--amarillo); color: black; padding: 18px 40px; border-radius: 12px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
+        .btn-main:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(246, 201, 14, 0.4); }
+        
+        .btn-sec { padding: 12px 25px; border: 2.5px solid var(--verde); color: var(--verde); border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-block; margin-top: 15px; }
+        .btn-sec:hover { background: var(--verde); color: white; }
+
+        /* Carrusel de Logos (Gigantes y Organizados) */
+        .brands-section { background: var(--blanco); padding: 70px 0; overflow: hidden; border-top: 1px solid #eee; }
+        .brands-title { text-align: center; font-size: 0.8rem; color: #aaa; letter-spacing: 4px; font-weight: 700; margin-bottom: 40px; text-transform: uppercase; }
+        
+        .slider-track { display: flex; width: calc(250px * 20); animation: scroll-brands 35s linear infinite; }
+        .brand-logo { width: 250px; height: 120px; padding: 0 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .brand-logo img { max-width: 100%; max-height: 90px; filter: grayscale(1); opacity: 0.4; transition: 0.4s; }
+        .brand-logo:hover img { filter: grayscale(0); opacity: 1; transform: scale(1.15); }
+
+        @keyframes scroll-brands { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 10)); } }
+
+        /* Secciones de Información Adicional */
+        .info-grid { padding: 80px 8%; max-width: 1250px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .info-box { background: white; padding: 50px; border-radius: 35px; box-shadow: 0 20px 45px rgba(0,0,0,0.06); transition: 0.3s; }
+        .info-box:hover { transform: translateY(-10px); }
+        .info-box i { font-size: 2.5rem; color: var(--verde); margin-bottom: 20px; }
+        .info-box h3 { color: var(--azul); margin-bottom: 20px; font-size: 1.6rem; }
+
+        /* WhatsApp con Animación de Timbre (Sutil cada 6 seg) */
+        .btn-wa {
+            position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px;
+            background: #25D366; color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 35px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4); z-index: 2000; text-decoration: none;
+            animation: wa-ring 6s infinite; 
+        }
+
+        @keyframes wa-ring {
+            0%, 85%, 100% { transform: rotate(0) scale(1); }
+            87% { transform: rotate(15deg) scale(1.1); }
+            89% { transform: rotate(-15deg) scale(1.1); }
+            91% { transform: rotate(15deg) scale(1.1); }
+            93% { transform: rotate(-15deg) scale(1.1); }
+        }
+
+        /* Footer con Redes y Ubicación */
+        footer { background: var(--azul); color: white; padding: 80px 8% 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; max-width: 1200px; margin: auto; }
+        .f-col h4 { color: var(--amarillo); margin-bottom: 25px; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px; }
+        
+        .social-flex { display: flex; gap: 15px; margin-top: 25px; }
+        .s-link { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; font-size: 1.3rem; }
+        .s-link:hover { background: var(--amarillo); color: var(--azul); transform: translateY(-5px); }
+
+        .map-placeholder { width: 100%; height: 180px; background: #111; border-radius: 20px; margin-top: 15px; display: flex; align-items: center; justify-content: center; color: #444; font-size: 0.8rem; border: 1px solid #333; }
+
+        @media (max-width: 900px) {
+            .hero-card { grid-template-columns: 1fr; }
+            .hero-img { height: 300px; order: -1; }
+            .hero-text { padding: 40px; text-align: center; }
+            .footer-grid { text-align: center; }
+            .social-flex { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-fixed"></div>
+
+    <header>
+        <div class="logo-area">
+            <img src="img/LOGO DJ.pdf.png" alt="Duplillaves DJ Logo" class="logo-img">
+            <div class="logo-text"><h1>DUPLILLAVES <span>DJ S.A.S</span></h1></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-card" data-aos="zoom-in-up">
+            <div class="hero-text">
+                <p style="color: var(--verde); font-weight: 800; letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase;">Cerrajería de Alta Gama</p>
+                <h2>Seguridad que abre <span>confianza</span></h2>
+                <p>Expertos en soluciones automotrices y seguridad para empresas. Brindamos servicios profesionales con respaldo legal en toda la ciudad de Bogotá.</p>
+                <a href="https://wa.me/TUNUMERO" class="btn-main">SOLICITAR COTIZACIÓN</a>
+            </div>
+            <div class="hero-img"></div>
+        </div>
+    </section>
+
+    <div class="brands-section">
+        <p class="brands-title">Marcas Especializadas</p>
+        <div class="slider-track">
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/toyota-1.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mazda-2.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/chevrolet-6.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/kia-4.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/hyundai-2.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/renault-2.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/ford-1.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/volkswagen-3.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/bmw-logo.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mercedes-benz-9.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/toyota-1.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mazda-2.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/chevrolet-6.svg"></div>
+            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/kia-4.svg"></div>
+        </div>
+    </div>
+
+    <section class="info-grid">
+        <div class="info-box" data-aos="fade-right">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>Sobre Nosotros</h3>
+            <p>Somos una empresa formalmente constituida (S.A.S) en Bogotá, dedicada a ofrecer soluciones de cerrajería con la más alta tecnología y ética profesional.</p>
+            <a href="nosotros.html" class="btn-sec">Saber más</a>
+        </div>
+        <div class="info-box" data-aos="fade-left">
+            <i class="fa-solid fa-key"></i>
+            <h3>Nuestros Productos</h3>
+            <p>Ofrecemos un catálogo completo de llaves inteligentes, carcasas de lujo, controles para alarma y cerraduras de seguridad residencial y comercial.</p>
+            <a href="productos.html" class="btn-sec">Ver Productos</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="f-col">
+                <h4>Duplillaves DJ S.A.S</h4>
+                <p>Tu seguridad es nuestra prioridad. Cerrajería técnica en Bogotá.</p>
+                <div class="social-flex">
+                    <a href="#" class="s-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="s-link"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="s-link"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>Contacto Directo</h4>
+                <p>📍 Dirección en Bogotá</p>
+                <p>📞 +57 3XX XXX XXXX</p>
+                <p>✉️ contacto@duplillavesdj.com</p>
+            </div>
+            <div class="f-col">
+                <h4>Horarios & Ubicación</h4>
+                <p>Lun - Vie: 8am - 6pm / Sáb: 8am - 4pm</p>
+                <div class="map-placeholder">MAPA DE GOOGLE AQUÍ</div>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:60px; opacity:0.3; font-size:0.7rem;">© 2024 Duplillaves DJ S.A.S. Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/qr/DPNPRIGPVLV4G1" class="btn-wa">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
