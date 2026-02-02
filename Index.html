@@ -14,129 +14,95 @@
             --azul: #0A3D62;      
             --verde: #1E8A62;     
             --amarillo: #F6C90E;  
-            --gris: #2D2D2D;
             --blanco: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: #f8fafa; color: var(--gris); overflow-x: hidden; }
+        body { background-color: #f8fafa; color: #333; overflow-x: hidden; }
 
-        /* Fondo Parallax Suave */
         .bg-fixed {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('img/imagen2.jpeg') center/cover no-repeat;
-            filter: blur(10px) brightness(0.35); z-index: -2;
+            filter: blur(8px) brightness(0.4); z-index: -2;
         }
 
-        /* Header Organizado */
+        /* HEADER OPTIMIZADO */
         header {
             background: rgba(255, 255, 255, 0.98);
-            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 5%; display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--azul);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-img { height: 55px; width: auto; }
-        .logo-text h1 { font-size: 1.2rem; color: var(--azul); font-weight: 800; letter-spacing: -0.5px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text h1 { font-size: 1.1rem; color: var(--azul); font-weight: 800; }
         .logo-text span { color: var(--verde); }
 
-        /* Hero Section Premium */
-        .hero { padding: 40px 8%; display: flex; align-items: center; min-height: 70vh; }
+        /* HERO ADAPTABLE */
+        .hero { padding: 30px 5%; display: flex; align-items: center; min-height: 80vh; }
         .hero-card {
             max-width: 1150px; margin: auto; background: var(--blanco);
-            display: grid; grid-template-columns: 1.1fr 0.9fr; border-radius: 40px;
-            overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+            display: grid; grid-template-columns: 1fr 1fr; border-radius: 30px;
+            overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
-        .hero-text { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .hero-text h2 { font-size: 3.2rem; color: var(--azul); line-height: 1.1; margin-bottom: 25px; }
+        .hero-text { padding: 40px; }
+        .hero-text h2 { font-size: 2.8rem; color: var(--azul); line-height: 1.1; margin-bottom: 20px; }
         .hero-text h2 span { color: var(--verde); }
-        .hero-text p { font-size: 1.1rem; color: #555; margin-bottom: 35px; border-left: 5px solid var(--amarillo); padding-left: 20px; }
-        
-        .hero-img { background: url('img/imagen6 .jpeg') center/cover; min-height: 450px; }
+        .hero-text p { font-size: 1rem; color: #555; margin-bottom: 30px; border-left: 4px solid var(--amarillo); padding-left: 15px; }
+        .hero-img { background: url('img/imagen6 .jpeg') center/cover; min-height: 400px; }
 
-        /* Botones de Acción */
-        .btn-main { background: var(--amarillo); color: black; padding: 18px 40px; border-radius: 12px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; text-align: center; }
-        .btn-main:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(246, 201, 14, 0.4); }
-        
-        .btn-sec { padding: 12px 25px; border: 2.5px solid var(--verde); color: var(--verde); border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-block; margin-top: 15px; }
-        .btn-sec:hover { background: var(--verde); color: white; }
+        /* BOTONES */
+        .btn-main { background: var(--amarillo); color: #000; padding: 15px 30px; border-radius: 10px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(246, 201, 14, 0.3); }
 
-        /* Carrusel de Logos */
-        .brands-section { background: var(--blanco); padding: 70px 0; overflow: hidden; border-top: 1px solid #eee; }
-        .brands-title { text-align: center; font-size: 0.8rem; color: #aaa; letter-spacing: 4px; font-weight: 700; margin-bottom: 40px; text-transform: uppercase; }
-        
-        .slider-track { display: flex; width: calc(250px * 20); animation: scroll-brands 35s linear infinite; }
-        .brand-logo { width: 250px; height: 120px; padding: 0 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .brand-logo img { max-width: 100%; max-height: 90px; filter: grayscale(1); opacity: 0.4; transition: 0.4s; }
-        .brand-logo:hover img { filter: grayscale(0); opacity: 1; transform: scale(1.15); }
+        /* BRANDS SLIDER */
+        .brands-section { background: #fff; padding: 40px 0; border-top: 1px solid #eee; }
+        .slider-track { display: flex; width: calc(200px * 14); animation: scroll 30s linear infinite; }
+        .brand-logo { width: 200px; padding: 0 30px; display: flex; align-items: center; }
+        .brand-logo img { max-width: 100%; filter: grayscale(1); opacity: 0.5; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 7)); } }
 
-        @keyframes scroll-brands { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 10)); } }
+        /* INFO GRID */
+        .info-grid { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
+        .info-box { background: #fff; padding: 40px; border-radius: 25px; box-shadow: var(--shadow); text-align: center; }
+        .info-box i { font-size: 2.5rem; color: var(--verde); margin-bottom: 15px; }
+        .btn-sec { margin-top: 20px; padding: 10px 20px; border: 2px solid var(--verde); color: var(--verde); text-decoration: none; font-weight: 700; border-radius: 8px; display: inline-block; }
 
-        /* Secciones de Información */
-        .info-grid { padding: 80px 8%; max-width: 1250px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .info-box { background: white; padding: 50px; border-radius: 35px; box-shadow: 0 20px 45px rgba(0,0,0,0.06); transition: 0.3s; }
-        .info-box:hover { transform: translateY(-10px); }
-        .info-box i { font-size: 2.5rem; color: var(--verde); margin-bottom: 20px; }
-        .info-box h3 { color: var(--azul); margin-bottom: 20px; font-size: 1.6rem; }
+        /* FOOTER */
+        footer { background: var(--azul); color: #fff; padding: 60px 5% 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: auto; }
+        .f-col h4 { color: var(--amarillo); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px; }
+        .social-flex { display: flex; gap: 15px; margin-top: 20px; }
+        .s-link { width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; }
 
-        /* WhatsApp Animado */
-        .btn-wa {
-            position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px;
-            background: #25D366; color: white; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-size: 35px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.4); z-index: 2000; text-decoration: none;
-            animation: wa-ring 6s infinite; 
-        }
+        /* MAPA */
+        .map-container { width: 100%; height: 180px; border-radius: 15px; overflow: hidden; margin-top: 15px; border: 1px solid #444; position: relative; cursor: pointer; }
+        .map-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10,61,98,0.5); display:flex; align-items:center; justify-content:center; opacity:0; transition:0.3s; }
+        .map-container:hover .map-overlay { opacity:1; }
 
-        @keyframes wa-ring {
-            0%, 85%, 100% { transform: rotate(0) scale(1); }
-            87% { transform: rotate(15deg) scale(1.1); }
-            89% { transform: rotate(-15deg) scale(1.1); }
-            91% { transform: rotate(15deg) scale(1.1); }
-            93% { transform: rotate(-15deg) scale(1.1); }
-        }
+        /* WHATSAPP */
+        .btn-wa { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 2000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); animation: wa-ring 5s infinite; }
 
-        /* Footer */
-        footer { background: var(--azul); color: white; padding: 80px 8% 40px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; max-width: 1200px; margin: auto; }
-        .f-col h4 { color: var(--amarillo); margin-bottom: 25px; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px; }
-        
-        .social-flex { display: flex; gap: 15px; margin-top: 25px; }
-        .s-link { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.3s; font-size: 1.3rem; }
-        .s-link:hover { background: var(--amarillo); color: var(--azul); transform: translateY(-5px); }
+        /* MODAL */
+        .modal-map { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); padding: 20px; }
+        .modal-content { position: relative; width: 100%; max-width: 800px; height: 70vh; margin: 10vh auto; background: #fff; border-radius: 15px; overflow: hidden; }
+        .close-modal { position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; color: #000; z-index: 11; }
 
-        /* --- ESTILOS DEL MAPA --- */
-        .map-container {
-            position: relative; width: 100%; height: 200px; border-radius: 20px; 
-            overflow: hidden; margin-top: 15px; border: 1px solid #333; cursor: pointer;
-        }
-        .map-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 61, 98, 0.4); display: flex; align-items: center;
-            justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;
-            transition: 0.3s; opacity: 0;
-        }
-        .map-container:hover .map-overlay { opacity: 1; background: rgba(10, 61, 98, 0.7); }
-
-        .modal-map {
-            display: none; position: fixed; z-index: 9999; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            position: relative; margin: 5vh auto; width: 90%; max-width: 1000px; 
-            height: 80vh; background: white; border-radius: 20px; overflow: hidden;
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 25px; color: #333; 
-            font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10;
-        }
-
-        @media (max-width: 900px) {
-            .hero-card { grid-template-columns: 1fr; }
-            .hero-img { height: 300px; order: -1; }
-            .hero-text { padding: 40px; text-align: center; }
+        /* MEDIA QUERIES PARA CELULARES */
+        @media (max-width: 768px) {
+            header { padding: 10px 5%; }
+            .logo-text h1 { font-size: 0.9rem; }
+            .hero { padding: 20px 5%; }
+            .hero-card { grid-template-columns: 1fr; border-radius: 20px; }
+            .hero-img { height: 250px; min-height: 250px; }
+            .hero-text { padding: 30px 20px; text-align: center; }
+            .hero-text h2 { font-size: 2rem; }
+            .hero-text p { padding-left: 0; border-left: none; border-top: 3px solid var(--amarillo); padding-top: 15px; }
+            .info-grid { padding: 40px 5%; }
             .footer-grid { text-align: center; }
             .social-flex { justify-content: center; }
+            .btn-wa { width: 55px; height: 55px; bottom: 20px; right: 20px; }
         }
     </style>
 </head>
@@ -146,127 +112,93 @@
 
     <header>
         <div class="logo-area">
-            <img src="img/LOGO DJ.pdf.png" alt="Duplillaves DJ Logo" class="logo-img">
+            <img src="img/LOGO DJ.pdf.png" alt="Logo" class="logo-img">
             <div class="logo-text"><h1>DUPLILLAVES <span>DJ S.A.S</span></h1></div>
         </div>
     </header>
 
     <section class="hero">
-        <div class="hero-card" data-aos="zoom-in-up">
-            <div class="hero-text">
-                <p style="color: var(--verde); font-weight: 800; letter-spacing: 3px; font-size: 0.75rem; text-transform: uppercase;">Cerrajería de Alta Gama</p>
-                <h2>Seguridad que abre <span>confianza</span></h2>
-                <p>Expertos en soluciones automotrices y seguridad para empresas. Brindamos servicios profesionales con respaldo legal en toda la ciudad de Bogotá.</p>
-                <a href="https://api.whatsapp.com/send/?phone=573052523589&text&type=phone_number&app_absent=0" class="btn-main">SOLICITAR COTIZACIÓN</a>
-            </div>
+        <div class="hero-card" data-aos="fade-up">
             <div class="hero-img"></div>
+            <div class="hero-text">
+                <p style="color: var(--verde); font-weight: 800; letter-spacing: 2px; font-size: 0.7rem; text-transform: uppercase;">Cerrajería de Alta Gama</p>
+                <h2>Seguridad que abre <span>confianza</span></h2>
+                <p>Expertos en soluciones automotrices y seguridad corporativa con respaldo legal en Bogotá.</p>
+                <a href="https://wa.me/573052523589" class="btn-main">COTIZAR AHORA</a>
+            </div>
         </div>
     </section>
 
     <div class="brands-section">
-        <p class="brands-title">Marcas Especializadas</p>
         <div class="slider-track">
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/toyota-1.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mazda-2.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/chevrolet-6.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/kia-4.svg"></div>
-            <div class="brand-logo"><img src="https://tse3.mm.bing.net/th/id/OIP.reSKm2I3vk3C1bY-q_l6qwHaFk?rs=1&pid=ImgDetMain&o=7&rm=3"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/renault-2.svg"></div>
-            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/ford-1.svg"></div>
-            <div class="brand-logo"><img src="https://logosmarcas.net/wp-content/uploads/2021/04/Volkswagen-Logo.png"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/bmw-logo.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mercedes-benz-9.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/toyota-1.svg"></div>
             <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/mazda-2.svg"></div>
-            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/chevrolet-6.svg"></div>
-            <div class="brand-logo"><img src="https://cdn.worldvectorlogo.com/logos/kia-4.svg"></div>
         </div>
     </div>
 
     <section class="info-grid">
-        <div class="info-box" data-aos="fade-right">
+        <div class="info-box" data-aos="fade-up">
             <i class="fa-solid fa-briefcase"></i>
             <h3>Sobre Nosotros</h3>
-            <p>Somos una empresa formalmente constituida (S.A.S) en Bogotá, dedicada a ofrecer soluciones de cerrajería con la más alta tecnología y ética profesional.</p>
+            <p>Empresa S.A.S dedicada a la cerrajería técnica con tecnología avanzada.</p>
             <a href="nosotros.html" class="btn-sec">Saber más</a>
         </div>
-        <div class="info-box" data-aos="fade-left">
+        <div class="info-box" data-aos="fade-up" data-aos-delay="100">
             <i class="fa-solid fa-key"></i>
-            <h3>Nuestros Productos</h3>
-            <p>Ofrecemos un catálogo completo de llaves inteligentes, carcasas de lujo, controles para alarma y cerraduras de seguridad residencial y comercial.</p>
-            <a href="productos.html" class="btn-sec">Ver Productos</a>
+            <h3>Productos</h3>
+            <p>Llaves inteligentes, carcasas de lujo y cerraduras de alta seguridad.</p>
+            <a href="productos.html" class="btn-sec">Catálogo</a>
         </div>
     </section>
 
     <footer>
         <div class="footer-grid">
             <div class="f-col">
-                <h4>Duplillaves DJ S.A.S</h4>
-                <p>Tu seguridad es nuestra prioridad. Cerrajería técnica en Bogotá.</p>
+                <h4>DUPLILLAVES DJ S.A.S</h4>
+                <p>Cerrajería técnica profesional.</p>
                 <div class="social-flex">
-                    <a href="https://www.instagram.com/duplillavesdj.co/" class="s-link"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@duplillavesdj76?is_from_webapp=1&sender_device=pc" class="s-link"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61584191590842&ref=fb_bidir_ig_profile_ac" class="s-link"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="s-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="s-link"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="f-col">
-                <h4>Contacto Directo</h4>
-                <p>📍 Calle 76 #20-05 local3 </p>
+                <h4>CONTACTO</h4>
+                <p>📍 Calle 76 #20-05 local 3</p>
                 <p>📞 +57 3052523589</p>
-                <p>✉️ contacto@duplillavesdj.com</p>
             </div>
             <div class="f-col">
-                <h4>Horarios & Ubicación</h4>
-                <p>Lun - Vie: 8am - 6pm / Sáb: 8am - 4pm</p>
-                
+                <h4>UBICACIÓN</h4>
                 <div class="map-container" onclick="openMap()">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!4v1770039756542!6m8!1m7!1scEF938xOxKpcoGLd-23gcg!2m2!1d4.664275684633703!2d-74.0613302210731!3f196.11515966191232!4f5.3493847072160605!5f0.7820865974627469" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                    <div class="map-overlay">
-                        <span><i class="fa-solid fa-maximize"></i> VER EN GRANDE</span>
-                    </div>
+                    <div class="map-overlay"><span>VER MAPA</span></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.627694582875!2d-74.0620606!3d4.6603527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMzcuMyJOIDc0wrAwMyczMy40Ilc!5e0!3m2!1ses!2sco!4v1625000000000!5m2!1ses!2sco" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
-        <p style="text-align:center; margin-top:60px; opacity:0.3; font-size:0.7rem;">© 2024 Duplillaves DJ S.A.S. Todos los derechos reservados.</p>
     </footer>
 
     <div id="mapModal" class="modal-map">
         <div class="modal-content">
             <span class="close-modal" onclick="closeMap()">×</span>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!4v1770039756542!6m8!1m7!1scEF938xOxKpcoGLd-23gcg!2m2!1d4.664275684633703!2d-74.0613302210731!3f196.11515966191232!4f5.3493847072160605!5f0.7820865974627469" 
-                width="100%" height="100%" style="border:0;" allowfullscreen="">
-            </iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.627694582875!2d-74.0620606!3d4.6603527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzknMzcuMyJOIDc0wrAwMyczMy40Ilc!5e0!3m2!1ses!2sco!4v1625000000000!5m2!1ses!2sco" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
         </div>
     </div>
 
-    <a href="https://api.whatsapp.com/send/?phone=573052523589&text&type=phone_number&app_absent=0" class="btn-wa">
+    <a href="https://wa.me/573052523589" class="btn-wa">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-
-        function openMap() {
-            document.getElementById("mapModal").style.display = "block";
-            document.body.style.overflow = "hidden"; 
-        }
-
-        function closeMap() {
-            document.getElementById("mapModal").style.display = "none";
-            document.body.style.overflow = "auto"; 
-        }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById("mapModal");
-            if (event.target == modal) {
-                closeMap();
-            }
-        }
+        AOS.init({ duration: 800, once: true });
+        function openMap() { document.getElementById("mapModal").style.display = "block"; document.body.style.overflow = "hidden"; }
+        function closeMap() { document.getElementById("mapModal").style.display = "none"; document.body.style.overflow = "auto"; }
     </script>
 </body>
 </html>
