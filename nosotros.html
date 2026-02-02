@@ -21,35 +21,52 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--blanco); color: #333; overflow-x: hidden; }
 
-        /* NAV DIFERENTE: Flotante y minimalista */
+        /* NAV */
         nav.simple-nav {
             padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
-            background: var(--blanco); border-bottom: 1px solid #eee;
+            background: var(--blanco); border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000;
         }
         .back-btn { text-decoration: none; color: var(--azul); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
 
-        /* HEADER DE PÁGINA: Texto a la izquierda, imagen a la derecha */
+        /* HEADER */
         .page-header {
-            padding: 100px 8%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px;
+            padding: 80px 8%; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px;
             background: var(--gris-f); align-items: center;
         }
-        .page-header h1 { font-size: 3.5rem; color: var(--azul); line-height: 1; margin-bottom: 25px; }
-        .page-header h1 span { color: var(--verde); font-weight: 300; display: block; font-size: 2rem; }
-        .page-header p { font-size: 1.2rem; line-height: 1.8; color: #666; }
+        .page-header h1 { font-size: 3rem; color: var(--azul); line-height: 1.1; margin-bottom: 25px; }
+        .page-header h1 span { color: var(--verde); font-weight: 300; display: block; font-size: 1.8rem; }
+        .page-header p { font-size: 1.1rem; line-height: 1.8; color: #555; }
 
-        /* SECCIÓN "NUESTRO ADN" (Grilla de 4 puntos) */
-        .adn-section { padding: 100px 8%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
-        .adn-item { padding: 30px; border-radius: 20px; background: #fff; transition: 0.3s; }
-        .adn-item:hover { background: var(--azul); color: white; }
-        .adn-item i { font-size: 2.5rem; color: var(--amarillo); margin-bottom: 20px; }
-        .adn-item h4 { font-size: 1.5rem; margin-bottom: 15px; }
-        .adn-item p { opacity: 0.8; line-height: 1.6; }
+        /* GALERÍA DE TRABAJOS (Reemplaza a la de Ética/Vanguardia) */
+        .work-section { padding: 100px 8%; background: #fff; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { color: var(--azul); font-size: 2.2rem; }
+        .section-title div { width: 60px; height: 4px; background: var(--amarillo); margin: 15px auto; }
 
-        /* PROCESO DE TRABAJO (Llena mucho y se ve pro) */
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .work-card { 
+            position: relative; border-radius: 20px; overflow: hidden; height: 350px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        }
+        .work-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .work-info { 
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px; 
+            background: linear-gradient(transparent, rgba(10, 61, 98, 0.95)); color: white; 
+        }
+        .work-card:hover img { transform: scale(1.1); }
+        .work-info h4 { font-size: 1.3rem; margin-bottom: 5px; color: var(--amarillo); }
+        .work-info p { font-size: 0.85rem; opacity: 0.9; }
+
+        /* SECCIÓN TÉCNICA (Lo que te hace relevante) */
+        .tech-section { padding: 80px 8%; background: #f9f9f9; display: flex; align-items: center; gap: 50px; }
+        .tech-text { flex: 1; }
+        .tech-list { list-style: none; margin-top: 20px; }
+        .tech-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--azul); }
+        .tech-list i { color: var(--verde); font-size: 1.2rem; }
+
+        /* PROTOCOLO */
         .process-section { padding: 100px 8%; background: var(--azul); color: white; text-align: center; }
-        .process-section h2 { font-size: 2.5rem; margin-bottom: 60px; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; position: relative; }
-        .step { position: relative; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
         .step-num { 
             width: 60px; height: 60px; background: var(--amarillo); color: black; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
@@ -57,14 +74,10 @@
         }
         .step h5 { font-size: 1.2rem; margin-bottom: 10px; color: var(--amarillo); }
 
-        /* SECCIÓN DE CIERRE PROFESIONAL */
+        /* CIERRE */
         .commitment { padding: 100px 8%; text-align: center; max-width: 900px; margin: auto; }
-        .commitment h3 { font-size: 2.5rem; color: var(--azul); margin-bottom: 30px; }
-        .commitment p { font-size: 1.1rem; color: #555; line-height: 2; margin-bottom: 40px; }
-        
-        .signature { font-weight: 800; color: var(--verde); letter-spacing: 2px; text-transform: uppercase; }
+        .signature { font-weight: 800; color: var(--verde); letter-spacing: 2px; text-transform: uppercase; margin-top: 20px; }
 
-        /* WHATSAPP (Sigue con la animación de timbre) */
         .btn-wa {
             position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px;
             background: #25D366; color: white; border-radius: 50%; display: flex;
@@ -80,84 +93,108 @@
         }
 
         @media (max-width: 850px) {
-            .page-header, .adn-section { grid-template-columns: 1fr; text-align: center; }
-            .page-header h1 { font-size: 2.5rem; }
+            .page-header, .tech-section { grid-template-columns: 1fr; flex-direction: column; text-align: center; }
+            .tech-list li { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <nav class="simple-nav">
-        <img src="img/logo.png" alt="Logo" style="height: 45px;">
+        <img src="img/LOGO DJ.pdf.png" alt="Logo" style="height: 45px;">
         <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> VOLVER AL INICIO</a>
     </nav>
 
     <header class="page-header">
         <div data-aos="fade-right">
-            <h1><span>Nosotros somos</span> Duplillaves DJ</h1>
-            <p>Más que una cerrajería, somos una entidad S.A.S comprometida con la infraestructura de seguridad en Bogotá. Transformamos emergencias en soluciones definitivas.</p>
+            <h1><span>Trayectoria & Precisión</span> Duplillaves DJ</h1>
+            <p>Somos una organización S.A.S legalmente constituida en la ciudad de Bogotá, enfocada en elevar los estándares de seguridad residencial y automotriz mediante ingeniería técnica y soporte legal garantizado.</p>
         </div>
         <div data-aos="fade-left">
-            <img src="img/imagen2.jpeg" alt="Empresa" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+            <img src="img/imagen5.jpeg" alt="Sede Duplillaves" style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
         </div>
     </header>
 
-    <section class="adn-section">
-        <div class="adn-item" data-aos="fade-up">
-            <i class="fa-solid fa-shield-virus"></i>
-            <h4>Ética Profesional</h4>
-            <p>Manejamos protocolos estrictos de confidencialidad para la duplicación de llaves maestras y sistemas corporativos.</p>
+    <section class="work-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Portafolio de Especialidades</h2>
+            <div></div>
+            <p>Evidencia visual de nuestra capacidad técnica en cada intervención.</p>
         </div>
-        <div class="adn-item" data-aos="fade-up" data-aos-delay="100">
-            <i class="fa-solid fa-microchip"></i>
-            <h4>Vanguardia</h4>
-            <p>Nuestra tecnología nos permite intervenir vehículos de última generación sin comprometer los sistemas electrónicos.</p>
+
+        <div class="work-grid">
+            <div class="work-card" data-aos="zoom-in">
+                <img src="img/imagen7.jpeg" alt="Cerrajería Automotriz"> <div class="work-info">
+                    <h4>Sistemas Automotrices</h4>
+                    <p>Cambio de carcasa con su respectiva llave.</p>
+                </div>
+            </div>
+
+            <div class="work-card" data-aos="zoom-in" data-aos-delay="100">
+                <img src="img/imagen8.jpeg" alt="Seguridad Residencial"> <div class="work-info">
+                    <h4>Sistemas Automotrices</h4>
+                    <p>Programacion de Chip audi .</p>
+                </div>
+            </div>
+
+            <div class="work-card" data-aos="zoom-in" data-aos-delay="200">
+                <img src="img/imagen9.jpeg" alt="Servicio Corporativo"> <div class="work-info">
+                    <h4>Soluciones Automotrices</h4>
+                    <p>Cambio de carcasa de MAzda .</p>
+                </div>
+            </div>
         </div>
-        <div class="adn-item" data-aos="fade-up" data-aos-delay="200">
-            <i class="fa-solid fa-building-shield"></i>
-            <h4>Enfoque B2B</h4>
-            <p>Especializados en el mantenimiento preventivo para locales comerciales, bodegas y edificios administrativos.</p>
+    </section>
+
+    <section class="tech-section">
+        <div class="tech-text" data-aos="fade-right">
+            <h2 style="color: var(--azul); font-size: 2rem; margin-bottom: 20px;">Equipamiento de Última Generación</h2>
+            <p>No improvisamos. Utilizamos scanners y máquinas duplicadoras de control numérico (CNC) para garantizar una precisión del 100% en cada corte.</p>
+            <ul class="tech-list">
+                <li><i class="fa-solid fa-check-double"></i> Duplicación láser por código electrónico.</li>
+                <li><i class="fa-solid fa-check-double"></i> Apertura técnica técnica no destructiva.</li>
+                <li><i class="fa-solid fa-check-double"></i> Software de diagnóstico automotriz actualizado.</li>
+                <li><i class="fa-solid fa-check-double"></i> Respaldos legalizados mediante factura electrónica.</li>
+            </ul>
         </div>
-        <div class="adn-item" data-aos="fade-up" data-aos-delay="300">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <h4>Transparencia</h4>
-            <p>Procesos administrativos claros, facturación legal y soportes técnicos detallados en cada intervención.</p>
+        <div style="flex: 1;" data-aos="fade-left">
+            <img src="img/herramientas.jpg" alt="Tecnología" style="width: 100%; border-radius: 20px;">
         </div>
     </section>
 
     <section class="process-section">
-        <h2 data-aos="fade-down">Nuestro Protocolo de Servicio</h2>
+        <h2 data-aos="fade-down">Protocolo de Servicio Certificado</h2>
         <div class="process-grid">
             <div class="step" data-aos="flip-up">
                 <div class="step-num">1</div>
                 <h5>Diagnóstico</h5>
-                <p>Evaluamos el sistema de seguridad antes de intervenir.</p>
+                <p>Análisis técnico del sistema antes de cualquier intervención.</p>
             </div>
             <div class="step" data-aos="flip-up" data-aos-delay="100">
                 <div class="step-num">2</div>
                 <h5>Propuesta</h5>
-                <p>Presentamos la solución más eficiente y duradera.</p>
+                <p>Selección de componentes certificados de grado profesional.</p>
             </div>
             <div class="step" data-aos="flip-up" data-aos-delay="200">
                 <div class="step-num">3</div>
                 <h5>Ejecución</h5>
-                <p>Técnicos certificados realizan el trabajo técnico.</p>
+                <p>Intervención técnica bajo estrictos códigos de ética.</p>
             </div>
             <div class="step" data-aos="flip-up" data-aos-delay="300">
                 <div class="step-num">4</div>
                 <h5>Garantía</h5>
-                <p>Entrega de factura y certificado de garantía S.A.S.</p>
+                <p>Soporte técnico post-servicio y certificación S.A.S.</p>
             </div>
         </div>
     </section>
 
     <section class="commitment" data-aos="zoom-in">
-        <h3>Seguridad que abre confianza</h3>
-        <p>No creemos en soluciones temporales. En Duplillaves DJ S.A.S, nuestra visión es ser el aliado estratégico de seguridad para cada empresa en Bogotá, ofreciendo un servicio donde la rapidez nunca compromete la calidad.</p>
+        <h3>Compromiso Institucional</h3>
+        <p>En Duplillaves DJ S.A.S, nuestra visión es profesionalizar el sector de la cerrajería en Bogotá. Cada servicio es ejecutado con la transparencia administrativa que su seguridad personal o corporativa merece.</p>
         <div class="signature">Duplillaves DJ S.A.S</div>
     </section>
 
-    <a href="https://wa.me/TUNUMERO" class="btn-wa">
+    <a href="https://wa.me/573052523589" class="btn-wa">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
