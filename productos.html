@@ -24,7 +24,7 @@
         /* NAVEGACIÓN */
         .nav-catalog {
             padding: 20px 8%; background: white; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .btn-back {
             text-decoration: none; color: var(--azul); font-weight: 700; font-size: 0.9rem;
@@ -39,11 +39,13 @@
         }
         .cat-header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 800; }
 
-        /* FILTROS */
+        /* CONTENEDOR DE FILTROS (PRINCIPAL) */
+        .filter-wrapper {
+            max-width: 1000px; margin: -35px auto 40px; position: relative; z-index: 10;
+            text-align: center;
+        }
         .filter-container {
-            display: flex; justify-content: center; gap: 12px;
-            margin: -35px auto 50px; position: relative; z-index: 10;
-            flex-wrap: wrap; padding: 0 20px;
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 0 20px;
         }
         .filter-btn {
             background: white; border: none; padding: 14px 28px; border-radius: 50px;
@@ -51,6 +53,17 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.4s;
         }
         .filter-btn.active { background: var(--verde); color: white; }
+
+        /* SUB-FILTROS AUTOMOTRIZ */
+        .sub-filter-container {
+            display: none; justify-content: center; gap: 8px; margin-top: 20px;
+            flex-wrap: wrap; animation: fadeIn 0.4s ease;
+        }
+        .sub-btn {
+            background: #e0e0e0; border: none; padding: 8px 20px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; color: #555; cursor: pointer; transition: 0.3s;
+        }
+        .sub-btn.active { background: var(--azul); color: white; }
 
         /* GRILLA */
         .products-container {
@@ -66,21 +79,18 @@
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* CONTENEDOR DE IMAGEN (Aquí pones tus fotos) */
         .prod-img-wrapper {
             width: 100%; height: 230px; background: #eaeff2;
             overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center;
         }
-        .prod-img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover; /* La foto se ajusta perfecto */
-        }
-        .no-img-placeholder {
-            color: #b0bec5; text-align: center; font-size: 0.8rem; font-weight: 600;
-        }
+        .prod-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .no-img-placeholder { color: #b0bec5; text-align: center; font-size: 0.8rem; font-weight: 600; }
 
         .prod-info { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
         .prod-category { font-size: 0.65rem; font-weight: 800; color: var(--verde); text-transform: uppercase; margin-bottom: 5px; }
-        .prod-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; color: var(--azul); line-height: 1.3; height: 45px; }
+        .prod-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--azul); line-height: 1.3; }
+        .prod-desc { font-size: 0.8rem; color: #777; margin-bottom: 12px; line-height: 1.4; flex-grow: 1; }
         .prod-price { font-size: 1.3rem; font-weight: 800; color: var(--azul); margin-bottom: 15px; }
         
         .btn-ws-order {
@@ -100,76 +110,89 @@
 
     <header class="cat-header">
         <h1>Catálogo de Seguridad</h1>
-        <p>Selecciona una categoría para ver nuestros productos certificados.</p>
+        <p>Soluciones certificadas para su vehículo, hogar y empresa.</p>
     </header>
 
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
-        <button class="filter-btn" onclick="filterProducts('automotriz', this)">Automotriz</button>
-        <button class="filter-btn" onclick="filterProducts('residencial', this)">Residencial</button>
-        <button class="filter-btn" onclick="filterProducts('seguridad', this)">Cajas & Seguridad</button>
+    <div class="filter-wrapper">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="changeMainFilter('todos', this)">Todos</button>
+            <button class="filter-btn" onclick="changeMainFilter('automotriz', this)">Automotriz</button>
+            <button class="filter-btn" onclick="changeMainFilter('residencial', this)">Residencial</button>
+            <button class="filter-btn" onclick="changeMainFilter('seguridad', this)">Cajas & Seguridad</button>
+        </div>
+
+        <div class="sub-filter-container" id="subAutoMenu">
+            <button class="sub-btn active" onclick="filterSub('todos', this)">Ver Todo Auto</button>
+            <button class="sub-btn" onclick="filterSub('proximidad', this)">Llaves Proximidad</button>
+            <button class="sub-btn" onclick="filterSub('Duplicado de llaves', this)">Controles</button>
+            <button class="sub-btn" onclick="filterSub('carcasas', this)">Carcasas</button>
+        </div>
     </div>
 
-    <div class="products-container" id="productGrid">
-        </div>
+    <div class="products-container" id="productGrid"></div>
 
     <script>
         const productos = [
-            // AUTOMOTRIZ (12)
-            { cat: 'automotriz', name: 'Llave Proximidad Toyota Hilux', price: '420.000', img: 'img/productos/toyota.jpg' },
-            { cat: 'automotriz', name: 'Llave Flip Mazda 3 Skyactiv', price: '320.000', img: 'img/productos/mazda.jpg' },
-            { cat: 'automotriz', name: 'Control Alarma Chevrolet Onix', price: '185.000', img: 'img/productos/chevrolet.jpg' },
-            { cat: 'automotriz', name: 'Llave Inteligente BMW Serie 3', price: '850.000', img: '' },
-            { cat: 'automotriz', name: 'Carcasa Ford Escape 3 Bot.', price: '75.000', img: '' },
-            { cat: 'automotriz', name: 'Chip Transponder Renault G', price: '65.000', img: '' },
-            { cat: 'automotriz', name: 'Control Original Kia Sportage', price: '290.000', img: '' },
-            { cat: 'automotriz', name: 'Llave Smart Audi A4', price: '920.000', img: '' },
-            { cat: 'automotriz', name: 'Control Jeep Grand Cherokee', price: '480.000', img: '' },
-            { cat: 'automotriz', name: 'Llave Suzuki Swift Proximity', price: '350.000', img: '' },
-            { cat: 'automotriz', name: 'Carcasa VW Jetta MK6', price: '90.000', img: '' },
-            { cat: 'automotriz', name: 'Programación Llave Nissan Qashqai', price: '390.000', img: '' },
+            // --- AUTOMOTRIZ - PROXIMIDAD (6 Espacios) ---
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140,000 - en adelante', img: 'img_catalogo_llaves/llave1.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicada de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave2.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave3.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave4.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave5.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave6.jpeg' },
 
-            // RESIDENCIAL (12)
-            { cat: 'residencial', name: 'Cerradura Digital Yale YMF40', price: '1.250.000', img: '' },
-            { cat: 'residencial', name: 'Cilindro Tesa Anti-Bumping', price: '240.000', img: '' },
-            { cat: 'residencial', name: 'Cerradura Biométrica Samsung', price: '1.480.000', img: '' },
-            { cat: 'residencial', name: 'Chapa de Seguridad Phillips', price: '155.000', img: '' },
-            { cat: 'residencial', name: 'Cerradura Invisible Remock', price: '680.000', img: '' },
-            { cat: 'residencial', name: 'Cantonera Eléctrica 12V', price: '210.000', img: '' },
-            { cat: 'residencial', name: 'Kit Cerradura Multipunto', price: '580.000', img: '' },
-            { cat: 'residencial', name: 'Cerrojo Digital de Sobreponer', price: '390.000', img: '' },
-            { cat: 'residencial', name: 'Chapa Electromecánica CISA', price: '420.000', img: '' },
-            { cat: 'residencial', name: 'Cilindro de Seguridad Mul-T-Lock', price: '310.000', img: '' },
-            { cat: 'residencial', name: 'Manija Digital Inteligente Tuya', price: '520.000', img: '' },
-            { cat: 'residencial', name: 'Ojo Mágico Digital con Cámara', price: '295.000', img: '' },
+            // --- AUTOMOTRIZ - CONTROLES (7 Espacios) ---
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Chevrolet Onix', desc: 'Mando original de 3 botones con frecuencia 433mhz.', price: '195.000', img: 'img_catalogo_llaves/llave7.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Renault Logan/Sandero', desc: 'Repuesto de control para cierre centralizado original.', price: '170.000', img: 'img_catalogo_llaves/llave8.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Alarma Ultra', desc: 'Controles para sistemas de alarma instalados.', price: '75.000', img: 'img_catalogo_llaves/llave9.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Navaja Hyundai', desc: 'Mando tipo flip con llave integrada para Tucson/i30.', price: '280.000', img: 'img_catalogo_llaves/llave10.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Nissan Frontier', desc: 'Control de 3 botones para camionetas Nissan.', price: '220.000', img: 'img_catalogo_llaves/llave11.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Mando Jeep Grand Cherokee', desc: 'Control de 5 botones con apertura de baúl eléctrica.', price: '480.000', img: 'img_catalogo_llaves/llave12.jpeg' },
+            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Honda Civic', desc: 'Mando integrado en la cabeza de la llave original.', price: '240.000', img: 'img_catalogo_llaves/llave13.jpeg' },
 
-            // SEGURIDAD & CAJAS (6)
-            { cat: 'seguridad', name: 'Caja Fuerte Digital Pequeña', price: '350.000', img: '' },
-            { cat: 'seguridad', name: 'Caja Fuerte Ignífuga S.A.S', price: '1.100.000', img: '' },
-            { cat: 'seguridad', name: 'Candado de Piso Cortina', price: '120.000', img: '' },
-            { cat: 'seguridad', name: 'Caja Mural Empotrable', price: '590.000', img: '' },
-            { cat: 'seguridad', name: 'Candado de Alta Seguridad 60mm', price: '185.000', img: '' },
-            { cat: 'seguridad', name: 'Caja Fuerte Biométrica Grande', price: '2.300.000', img: '' }
+            // --- AUTOMOTRIZ - CARCASAS (7 Espacios) ---
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa VW Jetta Navaja', desc: 'Repuesto premium para renovar su llave deteriorada.', price: '75.000', img: 'img_catalogo_llaves/llave14.jpeg' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Ford 3 Botones', desc: 'Carcasa rígida de alta durabilidad para Ford.', price: '60.000', img: 'img_catalogo_llaves/llave15.jpeg' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Chevrolet Cruze', desc: 'Repuesto tipo navaja para controles de 2 y 3 botones.', price: '75.000', img: 'img_catalogo_llaves/llave16.jpeg' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Toyota Prado', desc: 'Conversión de llave sencilla a tipo navaja lujosa.', price: '95.000', img: 'img_catalogo_llaves/llave17.jpeg' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Kia Cerato', desc: 'Gomas y botones suaves para renovación total.', price: '65.000', img: 'img_catalogo_llaves/llave18.jpeg' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Mercedes Benz', desc: 'Repuesto para llaves tipo "Chrome" de Mercedes.', price: '120.000', img: '' },
+            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Mazda 3 Botones', desc: 'Para llaves inteligentes y controles flip Mazda.', price: '85.000', img: '' },
+
+            // --- RESIDENCIAL ---
+            { mainCat: 'residencial', subCat: '', name: 'Cerradura Digital Yale', desc: 'Apertura con código y huella dactilar.', price: '1.250.000', img: '' },
+            { mainCat: 'residencial', subCat: '', name: 'Cilindro de Seguridad Tesa', desc: 'Sistema anti-bumping de alta seguridad.', price: '240.000', img: '' },
+
+            // --- CAJAS & SEGURIDAD ---
+            { mainCat: 'seguridad', subCat: '', name: 'Caja Fuerte Digital S.A.S', desc: 'Protección para valores y documentos importantes.', price: '450.000', img: '' }
         ];
 
-        function renderProducts(filter = 'todos') {
+        let currentMainFilter = 'todos';
+
+        function renderProducts(mainFilter = 'todos', subFilter = 'todos') {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = '';
-            const filtrados = filter === 'todos' ? productos : productos.filter(p => p.cat === filter);
+
+            const filtrados = productos.filter(p => {
+                const matchMain = mainFilter === 'todos' || p.mainCat === mainFilter;
+                const matchSub = subFilter === 'todos' || p.subCat === subFilter;
+                return matchMain && matchSub;
+            });
 
             filtrados.forEach(p => {
                 const imgContent = p.img 
                     ? `<img src="${p.img}" alt="${p.name}">` 
-                    : `<div class="no-img-placeholder"><i class="fa-regular fa-image" style="font-size:3rem; display:block; margin-bottom:10px;"></i>SUBIR FOTO<br>DE ${p.cat.toUpperCase()}</div>`;
+                    : `<div class="no-img-placeholder"><i class="fa-regular fa-image" style="font-size:3rem; display:block; margin-bottom:10px;"></i>SUBIR FOTO</div>`;
 
                 grid.innerHTML += `
                     <div class="product-card">
                         <div class="prod-img-wrapper">${imgContent}</div>
                         <div class="prod-info">
-                            <span class="prod-category">${p.cat}</span>
+                            <span class="prod-category">${p.subCat || p.mainCat}</span>
                             <h3 class="prod-name">${p.name}</h3>
+                            <p class="prod-desc">${p.desc}</p>
                             <p class="prod-price">$${p.price} COP</p>
-                            <a href="https://api.whatsapp.com/send/?phone=573052523589&text&type=phone_number&app_absent=0, precio y disponibilidad de: ${p.name}" class="btn-ws-order">
+                            <a href="https://wa.me/573052523589?text=Me interesa el producto: ${p.name}" class="btn-ws-order">
                                 <i class="fa-brands fa-whatsapp"></i> COTIZAR
                             </a>
                         </div>
@@ -177,10 +200,25 @@
             });
         }
 
-        function filterProducts(category, btn) {
+        function changeMainFilter(cat, btn) {
+            currentMainFilter = cat;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            renderProducts(category);
+
+            const subMenu = document.getElementById('subAutoMenu');
+            if(cat === 'automotriz') {
+                subMenu.style.display = 'flex';
+            } else {
+                subMenu.style.display = 'none';
+            }
+            
+            renderProducts(cat, 'todos');
+        }
+
+        function filterSub(sub, btn) {
+            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts(currentMainFilter, sub);
         }
 
         window.onload = () => renderProducts('todos');
