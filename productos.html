@@ -125,7 +125,7 @@
             <button class="sub-btn active" onclick="filterSub('todos', this)">Ver Todo Auto</button>
             <button class="sub-btn" onclick="filterSub('proximidad', this)">Llaves Proximidad</button>
             <button class="sub-btn" onclick="filterSub('Duplicado de llaves', this)">Controles</button>
-            <button class="sub-btn" onclick="filterSub('carcasas', this)">Carcasas</button>
+            <button class="sub-btn" onclick="filterSub('Carcasas', this)">Carcasas</button>
         </div>
     </div>
 
@@ -133,31 +133,46 @@
 
     <script>
         const productos = [
-            // --- AUTOMOTRIZ - PROXIMIDAD (6 Espacios) ---
+            // --- AUTOMOTRIZ - Duplicado de llaves (18 Espacios) ---
             { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140,000 - en adelante', img: 'img_catalogo_llaves/llave1.jpeg' },
-            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicada de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave2.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave2.jpeg' },
             { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave3.jpeg' },
             { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave4.jpeg' },
             { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave5.jpeg' },
             { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave6.jpeg' },
 
-            // --- AUTOMOTRIZ - CONTROLES (7 Espacios) ---
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Chevrolet Onix', desc: 'Mando original de 3 botones con frecuencia 433mhz.', price: '195.000', img: 'img_catalogo_llaves/llave7.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Renault Logan/Sandero', desc: 'Repuesto de control para cierre centralizado original.', price: '170.000', img: 'img_catalogo_llaves/llave8.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Alarma Ultra', desc: 'Controles para sistemas de alarma instalados.', price: '75.000', img: 'img_catalogo_llaves/llave9.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Navaja Hyundai', desc: 'Mando tipo flip con llave integrada para Tucson/i30.', price: '280.000', img: 'img_catalogo_llaves/llave10.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Nissan Frontier', desc: 'Control de 3 botones para camionetas Nissan.', price: '220.000', img: 'img_catalogo_llaves/llave11.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Mando Jeep Grand Cherokee', desc: 'Control de 5 botones con apertura de baúl eléctrica.', price: '480.000', img: 'img_catalogo_llaves/llave12.jpeg' },
-            { mainCat: 'automotriz', subCat: 'controles', name: 'Control Honda Civic', desc: 'Mando integrado en la cabeza de la llave original.', price: '240.000', img: 'img_catalogo_llaves/llave13.jpeg' },
+            
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave(Moto) ', desc: 'Corte especial, Tipo navaja ', price: '40.000 - en adelante', img: 'img_catalogo_llaves/llave7.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave', desc: 'Corte especial', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave8.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave con control', desc: 'Para Carro volkswagen', price: '300.000 - en adelante', img: 'img_catalogo_llaves/llave9.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave con control', desc: 'Control Ford, Tipo navaja', price: '300.000 - en adelante', img: 'img_catalogo_llaves/llave10.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave con control', desc: 'Control Ford', price: '140.000 - en adelante', img: 'img_catalogo_llaves/llave11.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave con control', desc: 'Control Renault', price: '300.000 - en adelante', img: 'img_catalogo_llaves/llave12.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave con control', desc: 'Control Chevrole, Tipo navaja', price: '300.000 - en adelante', img: 'img_catalogo_llaves/llave13.jpeg' },
 
-            // --- AUTOMOTRIZ - CARCASAS (7 Espacios) ---
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa VW Jetta Navaja', desc: 'Repuesto premium para renovar su llave deteriorada.', price: '75.000', img: 'img_catalogo_llaves/llave14.jpeg' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Ford 3 Botones', desc: 'Carcasa rígida de alta durabilidad para Ford.', price: '60.000', img: 'img_catalogo_llaves/llave15.jpeg' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Chevrolet Cruze', desc: 'Repuesto tipo navaja para controles de 2 y 3 botones.', price: '75.000', img: 'img_catalogo_llaves/llave16.jpeg' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Toyota Prado', desc: 'Conversión de llave sencilla a tipo navaja lujosa.', price: '95.000', img: 'img_catalogo_llaves/llave17.jpeg' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Kia Cerato', desc: 'Gomas y botones suaves para renovación total.', price: '65.000', img: 'img_catalogo_llaves/llave18.jpeg' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Mercedes Benz', desc: 'Repuesto para llaves tipo "Chrome" de Mercedes.', price: '120.000', img: '' },
-            { mainCat: 'automotriz', subCat: 'carcasas', name: 'Carcasa Mazda 3 Botones', desc: 'Para llaves inteligentes y controles flip Mazda.', price: '85.000', img: '' },
+            
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave Control Toyota', desc: 'COntrol de aprox con llave', price: '800.000 - en adelante', img: 'img_catalogo_llaves/llave14.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave Control KIA(Con llave)', desc: 'Control tipo navaja', price: '400.000 - en adelante', img: 'img_catalogo_llaves/llave15.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave Control Jeep', desc: 'Control tipo navaja', price: '600.000 - en adelante', img: 'img_catalogo_llaves/llave16.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave Control Renault', desc: 'Control Renault con llave', price: '600.000 - en adelante', img: 'img_catalogo_llaves/llave17.jpeg' },
+            { mainCat: 'automotriz', subCat: 'Duplicado de llaves', name: 'Duplicado de llave Control JAGUAR', desc: 'Control JAGUAR con llave', price: '900.000 - en adelante', img: 'img_catalogo_llaves/llave18.jpeg' },
+
+            // --- Carcasas (6 Espacios) ---
+            { mainCat: 'automotriz', subCat: '', name: '', desc: ' ', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
+            { mainCat: 'automotriz', subCat: '', name: '', desc: '', price: '', img: '' },
 
             // --- RESIDENCIAL ---
             { mainCat: 'residencial', subCat: '', name: 'Cerradura Digital Yale', desc: 'Apertura con código y huella dactilar.', price: '1.250.000', img: '' },
